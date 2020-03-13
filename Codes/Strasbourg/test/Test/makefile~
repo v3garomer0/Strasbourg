@@ -1,0 +1,27 @@
+
+.PHONY: all clean
+
+ifdef ROOTSYS
+CXX := g++  
+LINKER := g++
+CFLAGS = -c -g -Wall # -fPIC -DPIC # compiler options
+SLIBFLAGS = -shared -Wl 
+IFLAGS += -I $(ROOTSYS)/include/root
+ROOTLIBS = $(shell $(ROOTSYS)/bin/root-config --glibs) -lMinuit -lHtml -lCintex
+ROOTLIBS := $(filter-out -lNew,$(ROOTLIBS))
+ROOTLIBS := $(filter-out -lpthread,$(ROOTLIBS))
+else
+all:
+        @echo "ROOT not found!"
+endif
+
+all: goBkgr
+
+goBkgr: *.o
+	$(CXX) $(IFLAGS) $(ROOTLIBS) $^ -o $@
+
+%.o: %.C
+	$(CXX) $(CFLAGS) $(IFLAGS) $(ROOTLIBS) $^
+
+clean:
+	rm -rf *.o *.so *.d *.gch

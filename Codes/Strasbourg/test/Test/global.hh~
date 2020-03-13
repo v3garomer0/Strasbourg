@@ -1,0 +1,52 @@
+#ifdef main_h
+  #define EXTERN 
+#else
+  #define EXTERN extern
+#endif
+
+
+EXTERN Float_t eneBeam;
+EXTERN Int_t runIn;
+EXTERN TString fileIn;
+EXTERN TString fileQDC;
+
+// output fit parameters
+EXTERN Double_t fitPara_s3f_p[24][11][6]; // store for later
+EXTERN Double_t fitPara_s3f_a[24][8][6];
+EXTERN Int_t fitPeak_s3f_p[24][11]; // matrix of single, double, triple peaks from kinematics lines
+EXTERN Int_t fitPeak_s3f_a[24][8];
+
+EXTERN Int_t iter;
+EXTERN Double_t slope[24], offset[24];
+EXTERN TF1 *f_single, *f_resEne_s3f_p, *f_resEne_s3f_a; //, *f_resEne_a_s3b, *f_resEne_p_s3b;
+EXTERN std::vector <Double_t> qdcMid_sing_s3f[24], qdcMid_doub_s3f[24], qdcMid_trip_s3f[24];
+EXTERN std::vector <Double_t> qdcErr_sing_s3f[24], qdcErr_doub_s3f[24], qdcErr_trip_s3f[24];
+EXTERN std::vector <Int_t> fitId_sing_s3f[24], fitId_doub_s3f[24], fitId_trip_s3f[24];
+
+
+// output histograms
+EXTERN TH1F* h_qdc_s3f[24]; // no time sync in
+EXTERN TH2F* h_polVsEne_s3f;
+//EXTERN TH2F* h_polVsEne_s3b;
+EXTERN Double_t mu_s3f[24]; //, mu_s3b[24]; // mean strip position
+EXTERN Double_t z_s3f; // z-position
+//EXTERN Double_t z_s3b;
+
+EXTERN Double_t thetaMin_s3f; // angular range of kinematics distributions
+EXTERN Double_t thetaMax_s3f;
+// EXTERN Double_t thetaMin_s3b;
+// EXTERN Double_t thetaMax_s3b;
+
+EXTERN TGraph* g_polVsEne_s3f_a[8];
+//EXTERN TGraph* g_polVsEne_s3b_a[8];
+EXTERN TGraph* g_polVsEne_s3f_p[11];
+//EXTERN TGraph* g_polVsEne_s3b_p[11];
+//EXTERN TGraph* g_polVsEne_s3f_d[4];
+//EXTERN TGraph* g_polVsEne_s3b_d[4];
+//EXTERN TGraph* g_polVsEne_s3f_h;
+
+EXTERN TF1* f_eneVsPol_s3f_a[8];
+//EXTERN TF1* f_eneVsPol_s3b_p[8];
+EXTERN TF1* f_eneVsPol_s3f_p[11];
+//EXTERN TF1* f_eneVsPol_s3b_p[11];
+
