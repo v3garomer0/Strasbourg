@@ -4,11 +4,11 @@
 
 
 void event_g (){
-  
+
   const Int_t n_run = 10;
   gStyle->SetOptStat (1111110);
 
-  
+
   // pull data
   Long64_t event_g;
   Int_t mult_g;
@@ -46,7 +46,7 @@ void event_g (){
 
       if (mult_g < 1) continue;
       sumEneG = 0.;
-      
+
       h_multG->Fill (mult_g);
       for (Int_t j = 0; j < mult_g; j++) // energies
 	{
@@ -63,11 +63,11 @@ void event_g (){
   c_mult->cd ()->SetTickx ();
   c_mult->cd ()->SetTicky ();
   c_mult->cd ()->SetLogy ();
-  
+
   h_multG->Draw ();
   c_mult->Print (Form ("r%03i_event_g_mult.pdf", n_run));
 
-  
+
   TCanvas *c_eneG = new TCanvas ("c_eneG", "Gamma Energies", 700, 500); // energies
   c_eneG->Draw ();
   c_eneG->Divide (8, 5);
